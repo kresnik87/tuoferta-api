@@ -1,0 +1,46 @@
+resources:
+    App\Entity\ADS:
+        attributes:
+            pagination_enabled: false
+            normalization_context:
+                groups: ['ads-read']
+            denormalization_context:
+                groups: ['ads-write']
+            enable_max_depth: true
+        collectionOperations:
+            get:
+                method: 'GET'
+
+            post:
+                method: 'POST'
+
+        itemOperations:
+
+            get:
+                method: 'GET'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                    summary: 'Devuelve un anuncio'
+
+#            filter:
+#                method: 'GET'
+#                route_name: 'api_user_filter'
+#                access_control: is_granted('ROLE_USER')
+#                swagger_context:
+#                    summary: 'Filtra usuarios por nombre dni o cif'
+
+            put:
+                method: 'PUT'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                  summary: 'Actualiza el un anuncio'
+
+            delete:
+                            method: 'DELETE'
+                            path: '/ads/{id}'
+                            swagger_context:
+                                summary: 'Borra  un anuncio'
+                            requirements:
+                                id: '\d+'
+                            access_control: is_granted('ROLE_USER')
+

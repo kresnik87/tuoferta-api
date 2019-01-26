@@ -1,0 +1,82 @@
+resources:
+    App\Entity\User:
+        attributes:
+            pagination_enabled: false
+            normalization_context:
+                groups: ['user-read']
+            denormalization_context:
+                groups: ['user-write']
+            enable_max_depth: true
+        collectionOperations:
+            get:
+                method: 'GET'
+
+            post:
+                method: 'POST'
+
+        itemOperations:
+            me:
+                method: 'GET'
+                route_name: 'api_me'
+                swagger_context:
+                    summary: 'Devuelve el perfil del usuario'
+                access_control: is_granted('ROLE_USER')
+
+            logout:
+                method: 'POST'
+                route_name: 'logout'
+                defaults:
+                    color: 'brown'
+                swagger_context:
+                    summary: 'Finaliza la sesión'
+
+            get:
+                method: 'GET'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                    summary: 'Devuelve el perfil de un usuario'
+
+#            filter:
+#                method: 'GET'
+#                route_name: 'api_user_filter'
+#                access_control: is_granted('ROLE_USER')
+#                swagger_context:
+#                    summary: 'Filtra usuarios por nombre dni o cif'
+
+            put:
+                method: 'PUT'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                  summary: 'Actualiza el perfil de un usuario'
+
+            login:
+                method: 'POST'
+                route_name: "fos_oauth_server_token"
+                swagger_context:
+                    summary: 'Login (Must be a form-data)'
+                    parameters:
+                          -
+                            name: username
+                            in: path
+                            type: string
+                          -
+                            name: password
+                            in: path
+                            type: string
+                          -
+                            name: client_id
+                            in: path
+                            type: string
+                          -
+                            name: client_secret
+                            in: path
+                            type: string
+                          -
+                            name: grant_type
+                            in: path
+                            type: string
+            delete:
+                method: 'DELETE'
+                swagger_context:
+                    summary: 'Elimina un usuario'
+                access_control: is_granted('ROLE_USER')

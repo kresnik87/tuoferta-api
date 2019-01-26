@@ -1,0 +1,80 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+
+    encoders:
+          FOS\UserBundle\Model\UserInterface: bcrypt
+
+    providers:
+        #in_memory: { memory: ~ }
+        fos_user_bundle:
+            id: fos_user.user_provider.username_email
+
+    access_denied_url: /api/token
+
+    firewalls:
+
+        #oauth_authorize:
+            #pattern:    ^/oauth/v2/auth
+
+        oauth_token:
+            pattern:    ^/api/login
+            security:   false
+
+
+        oauth_authorize:
+            pattern:    ^/api/auth
+            form_login:
+                provider: fos_user_bundle
+                check_path: /api/auth
+                login_path: /api/login
+
+
+        api:
+            pattern:    ^/api
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  true # can be omitted as its default value
+
+        admin:
+            pattern: ^/
+            form_login:
+                provider: fos_user_bundle
+                csrf_token_generator: security.csrf.token_manager
+            logout:
+                path:   /logout
+                target: /login
+            anonymous:    true
+
+        main:
+            anonymous: true
+
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }
+      # - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+        - { path: ^/api$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/index.html$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/users, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/index.json$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/index.jsonld$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/create-service, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/create-new-service, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_profiler, role: ROLE_USER}
+        - { path: ^/profile, role: ROLE_USER}

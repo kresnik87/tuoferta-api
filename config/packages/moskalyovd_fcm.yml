@@ -1,0 +1,3 @@
+moskalyovd_fcm:
+    server_key:  "%env(resolve:API_KEY)%"
+

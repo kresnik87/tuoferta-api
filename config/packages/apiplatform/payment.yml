@@ -1,0 +1,46 @@
+resources:
+    App\Entity\Payment:
+        attributes:
+            pagination_enabled: false
+            normalization_context:
+                groups: ['payment-read']
+            denormalization_context:
+                groups: ['payment-write']
+            enable_max_depth: true
+        collectionOperations:
+            get:
+                method: 'GET'
+
+            post:
+                method: 'POST'
+
+        itemOperations:
+
+            get:
+                method: 'GET'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                    summary: 'Devuelve un pago'
+
+#            filter:
+#                method: 'GET'
+#                route_name: 'api_user_filter'
+#                access_control: is_granted('ROLE_USER')
+#                swagger_context:
+#                    summary: 'Filtra usuarios por nombre dni o cif'
+
+            put:
+                method: 'PUT'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                  summary: 'Actualiza el un pago'
+
+            delete:
+                            method: 'DELETE'
+                            path: '/payment/{id}'
+                            swagger_context:
+                                summary: 'Borra  un pago'
+                            requirements:
+                                id: '\d+'
+                            access_control: is_granted('ROLE_USER')
+

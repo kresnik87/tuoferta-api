@@ -1,0 +1,37 @@
+resources:
+    App\Entity\AdsImages:
+        attributes:
+            pagination_enabled: false
+            normalization_context:
+                groups: ['adsimages-read']
+            denormalization_context:
+                groups: ['adsimages-write']
+            enable_max_depth: true
+        collectionOperations:
+            get:
+                method: 'GET'
+
+
+        itemOperations:
+
+            get:
+                method: 'GET'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                    summary: 'Devuelve una imagen de un anuncio'
+
+            put:
+                method: 'PUT'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                  summary: 'Actualiza la imagen del anuncio'
+
+            delete:
+                            method: 'DELETE'
+                            path: '/adsimages/{id}'
+                            swagger_context:
+                                summary: 'Borra  una imagen el anuncio'
+                            requirements:
+                                id: '\d+'
+                            access_control: is_granted('ROLE_USER')
+

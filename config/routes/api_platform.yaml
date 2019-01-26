@@ -1,0 +1,11 @@
+api_platform:
+    resource: .
+    type: api_platform
+    prefix: /api
+
+fos_oauth_server_token:
+     path: /api/login
+     controller: fos_oauth_server.controller.token:tokenAction
+fos_oauth_server_authorize:
+     path: /api/auth
+     controller: fos_oauth_server.controller.authorize:authorizeAction

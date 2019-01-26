@@ -1,0 +1,46 @@
+resources:
+    App\Entity\Subcategory:
+        attributes:
+            pagination_enabled: false
+            normalization_context:
+                groups: ['subcategory-read']
+            denormalization_context:
+                groups: ['subcategory-write']
+            enable_max_depth: true
+        collectionOperations:
+            get:
+                method: 'GET'
+
+            post:
+                method: 'POST'
+
+        itemOperations:
+
+            get:
+                method: 'GET'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                    summary: 'Devuelve una subcategoria'
+
+#            filter:
+#                method: 'GET'
+#                route_name: 'api_user_filter'
+#                access_control: is_granted('ROLE_USER')
+#                swagger_context:
+#                    summary: 'Filtra usuarios por nombre dni o cif'
+
+            put:
+                method: 'PUT'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                  summary: 'Actualiza una subcategoria'
+
+            delete:
+                            method: 'DELETE'
+                            path: '/subcategory/{id}'
+                            swagger_context:
+                                summary: 'Borra  una subcategoria'
+                            requirements:
+                                id: '\d+'
+                            access_control: is_granted('ROLE_USER')
+

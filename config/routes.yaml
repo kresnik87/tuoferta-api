@@ -1,0 +1,39 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# FOSUserBundle
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_oauth_server_token:
+     path: /api/login
+     controller: fos_oauth_server.controller.token:tokenAction
+
+fos_oauth_server_authorize:
+     path: /api/auth
+     controller: fos_oauth_server.controller.authorize:authorizeAction
+
+api_register:
+    path: '/api/register'
+    methods: ['POST']
+    defaults:
+        _controller: App\Controller\UserController::registerAction
+        _api_resource_class: App\Entity\User
+        _api_collection_operation_name: 'register'
+
+##################______USER_____###############################################
+
+api_me:
+    path: '/api/me'
+    methods: ['GET','PUT']
+    defaults:
+        _controller: App\Controller\UserController::meAction
+        _api_resource_class: App\Entity\User
+        _api_collection_operation_name: 'me'
+
+logout:
+    path: '/api/logout'
+    methods: ['POST']
+    defaults:
+        _controller: App\Controller\UserController::logoutAction

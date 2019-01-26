@@ -1,0 +1,46 @@
+resources:
+    App\Entity\Report:
+        attributes:
+            pagination_enabled: false
+            normalization_context:
+                groups: ['report-read']
+            denormalization_context:
+                groups: ['report-write']
+            enable_max_depth: true
+        collectionOperations:
+            get:
+                method: 'GET'
+
+            post:
+                method: 'POST'
+
+        itemOperations:
+
+            get:
+                method: 'GET'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                    summary: 'Devuelve un reporte'
+
+#            filter:
+#                method: 'GET'
+#                route_name: 'api_user_filter'
+#                access_control: is_granted('ROLE_USER')
+#                swagger_context:
+#                    summary: 'Filtra usuarios por nombre dni o cif'
+
+            put:
+                method: 'PUT'
+                access_control: is_granted('ROLE_USER')
+                swagger_context:
+                  summary: 'Actualiza el un reporte'
+
+            delete:
+                            method: 'DELETE'
+                            path: '/report/{id}'
+                            swagger_context:
+                                summary: 'Borra  un reporte'
+                            requirements:
+                                id: '\d+'
+                            access_control: is_granted('ROLE_USER')
+
