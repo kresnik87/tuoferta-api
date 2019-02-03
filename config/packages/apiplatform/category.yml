@@ -37,7 +37,7 @@ resources:
 
             delete:
                             method: 'DELETE'
-                            path: '/category/{id}'
+                            path: '/categories/{id}'
                             swagger_context:
                                 summary: 'Borra  una catgoria'
                             requirements:

@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -95,11 +96,23 @@ class ADS
      */
     private $review;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"user"})
+     */
+    private $createdDate;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $negotiable;
+
     public function __construct()
     {
         $this->adsimages = new ArrayCollection();
         $this->report = new ArrayCollection();
         $this->subcategory = new ArrayCollection();
+        $this->createdDate = new \dateTime();
         $this->review = new ArrayCollection();
     }
 
@@ -350,6 +363,30 @@ class ADS
         if ($this->review->contains($review)) {
             $this->review->removeElement($review);
         }
+
+        return $this;
+    }
+
+    public function getCreatedDate(): ?\dateTime
+    {
+        return $this->createdDate;
+    }
+
+    public function setCreatedDate(?\dateTime $createdDate = null): self
+    {
+        $this->createdDate = $createdDate ? $createdDate : new \dateTime();
+
+        return $this;
+    }
+
+    public function getNegotiable(): ?bool
+    {
+        return $this->negotiable;
+    }
+
+    public function setNegotiable(?bool $negotiable): self
+    {
+        $this->negotiable = $negotiable;
 
         return $this;
     }

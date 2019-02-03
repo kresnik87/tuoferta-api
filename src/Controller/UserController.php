@@ -261,7 +261,9 @@ class UserController extends Controller
             if (isset($params["name"])) {
                 $user->setName($params["name"]);
             }
-
+            if (isset($params["lastname"])) {
+                $user->setName($params["lastname"]);
+            }
             if (isset($params["telephone"])) {
                 $user->setTelephone($params["telephone"]);
             }
@@ -273,7 +275,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-               try {
+             /*  try {
                    $registerMailNotification = new SendMailCommand(
                            $params["email"], $params["name"], 'Te has registrado ', '', $this->renderView(
                                    // templates/emails/registration.html.twig
@@ -285,7 +287,7 @@ class UserController extends Controller
                }
                catch (Error $e) {
 
-               }
+               }*/
 
 
             return $user;

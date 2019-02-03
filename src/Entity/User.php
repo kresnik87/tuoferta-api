@@ -5,11 +5,15 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Annotation\ApiResource;
 use FOS\UserBundle\Model\User as BaseUser;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ApiResource()
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @Vich\Uploadable
  */
 class User extends BaseUser
 {
@@ -34,19 +38,7 @@ class User extends BaseUser
      */
     private $lastName;
 
-    /**
-     * One User has many childrens
-     * @ORM\OneToMany(targetEntity="User", mappedBy="parent")
-     */
-    private $children;
 
-    /**
-     * Many User has one parent
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="children")
-     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
-     * @Groups({"user-read", "user-write"})
-     */
-    private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ADS", mappedBy="user")
@@ -58,11 +50,48 @@ class User extends BaseUser
      */
     private $review;
 
+    /**
+     * @Groups({"user-read",  "meeting-read", "worker-read","employee-read","employee-write"})
+     */
+    protected $email;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @Groups({"user-read","employee-read", "worker-read"})
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="user", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"user"})
+     */
+    private $createdDate;
+
+    /**
+     * @ORM\Column(type="datetime" ,nullable=true)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\ADS")
+     */
+    private $favorites;
     public function __construct()
     {
         parent::__construct();
         $this->ads = new ArrayCollection();
+        $this->createdDate = new \dateTime();
+        $this->updatedAt = new \dateTime();
         $this->review = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
     }
 
     function getId()
@@ -80,15 +109,7 @@ class User extends BaseUser
         return $this->lastName;
     }
 
-    function getChildren()
-    {
-        return $this->children;
-    }
 
-    function getParent()
-    {
-        return $this->parent;
-    }
 
     function setId($id)
     {
@@ -105,15 +126,7 @@ class User extends BaseUser
         $this->lastName = $lastName;
     }
 
-    function setChildren($children)
-    {
-        $this->children = $children;
-    }
 
-    function setParent($parent)
-    {
-        $this->parent = $parent;
-    }
 
     /**
      * @return Collection|ADS[]
@@ -172,6 +185,83 @@ class User extends BaseUser
             if ($review->getUser() === $this) {
                 $review->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+        if ($image) {
+            $this->setUpdatedAt();
+        }
+
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCreatedDate(): ?\dateTime
+    {
+        return $this->createdDate;
+    }
+
+    public function setCreatedDate(?\dateTime $createdDate = null): self
+    {
+        $this->createdDate = $createdDate ? $createdDate : new \dateTime();
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\dateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\dateTime $updateAt = null): self
+    {
+        $this->updatedAt = $updateAt ? $updateAt : new \dateTime();
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ADS[]
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(ADS $favorite): self
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites[] = $favorite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(ADS $favorite): self
+    {
+        if ($this->favorites->contains($favorite)) {
+            $this->favorites->removeElement($favorite);
         }
 
         return $this;
