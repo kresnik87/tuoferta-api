@@ -4,6 +4,10 @@ security:
     encoders:
           FOS\UserBundle\Model\UserInterface: bcrypt
 
+    role_hierarchy:
+            ROLE_ADMIN:       ROLE_USER
+            ROLE_SUPER_ADMIN: ROLE_ADMIN
+
     providers:
         #in_memory: { memory: ~ }
         fos_user_bundle:
@@ -77,4 +81,5 @@ security:
         - { path: ^/api/create-new-service, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/_profiler, role: ROLE_USER}
+        - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/profile, role: ROLE_USER}

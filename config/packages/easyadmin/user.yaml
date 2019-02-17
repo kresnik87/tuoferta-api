@@ -1,0 +1,30 @@
+easy_admin:
+    entities:    
+        User:
+            disabled_actions: ['delete', 'edit', 'new']
+            class: App\Entity\User
+            label: menu.users
+            list:
+                title: menu.users
+                fields:
+                    - { property: 'id', label: 'id' }
+                    - { property: 'username', label: 'username' }
+                    - { property: 'email', label: 'email'}
+                    #Easy admin bug allow to do call to enable/disable user with 403. It solve in future EasyAdmin releases
+                    - { property: 'enabled', label: 'enabled',type: 'toggle', type_options: { readonly: true }}
+                    - { property: 'lastLogin', label: 'lastLogin'}
+                    - { property: 'updatedAt', label: 'updatedDate'}
+                    - { property: 'createdDate', label: 'createdDate'}
+            show:
+                title: menu.users
+                fields:
+                    - { property: 'id', label: 'id' }
+                    - { property: 'username', label: 'username' }
+                    - { property: 'email', label: 'email'}
+                    - { property: 'enabled', label: 'enabled'}
+                    - { property: 'lastLogin', label: 'lastLogin'}
+                    - { property: 'updatedDate', label: 'updatedDate'}
+                    - { property: 'createdDate', label: 'createdDate'}
+#                    - { property: 'academyItemViews', label: 'academyItemViews'}
+                    - { property: 'image', label: 'image', type: 'image', base_path: '%env(APP_IMAGE_USER)%' }
+                    - { property: 'statusPayment', label: 'statusPayment'}

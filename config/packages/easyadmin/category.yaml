@@ -1,0 +1,32 @@
+easy_admin:
+    entities:    
+        Category:
+            class: App\Entity\Category
+            label: menu.category
+            list:
+                title: menu.category
+                fields:
+                    - { property: 'id', label: 'id' }
+                    - { property: 'name', label: 'name' }
+                    - { property: 'color', label: 'color' }
+                    - { property: 'colorName', label: 'colorName' }
+                    - { property: 'iconName', label: 'iconName' }
+
+
+            show:
+                title: menu.category
+                fields:
+                    - { property: 'id', label: 'id' }
+                    - { property: 'name', label: 'name'}
+                    - { property: 'color', label: 'color' }
+                    - { property: 'colorName', label: 'colorName' }
+                    - { property: 'iconName', label: 'iconName' }
+
+            form:
+                title: menu.category
+                fields:
+                    - { property: 'name', label: 'name' }
+                    - { property: 'color', label: 'color', type: 'color' }
+                    - { property: 'colorName', label: 'colorName' }
+                    - { property: 'iconName', label: 'iconName' }
+

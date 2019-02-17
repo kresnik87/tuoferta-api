@@ -1,0 +1,117 @@
+#Actions labels
+actions.edit: Editar
+actions.show: Ver
+actions.delete: Eliminar
+actions.new: Añadir
+actions.search: Buscar
+
+#Standar fields labels
+id: Id
+name: Nombre
+type: Tipo
+objective: Objetivo
+objectives: Objetivos
+elements: Elementos       
+user: Usuario
+rules: Normas
+video: Vídeo
+audio: Audio
+title: Título
+image: Imagen
+description: Descripción
+link: Enlace 
+username: Usuario
+surname: Primer Apellido
+surname2: Sengundo Apellido
+email: Correo
+lastLogin: Último inicio de sesión
+createdDate: Fecha de creación
+updatedDate: Última actualización
+academyItemViews: Articulos vistos
+roles: Permisos
+enabled: Activado
+disabled: Desactivado
+statusPayment: Pago
+payment: Pago
+nextPaymentDate: Próximo pago
+creditCard: Tarjeta de credito
+exercises: Ejercicios
+competitions: Competiciones
+teams: Equipos
+parent: Cuerpo Tecnico (padre)
+children: Cuerpo Tecnico (hijo)
+profile: Perfil
+placeofbirth: Lugar de nacimiento
+telephone: Telefono
+cellphone: Móvil
+technicalName: Nombre técnico
+address: Dirección
+birthdate: Aniversario
+age: Edad
+status: Estado
+coupon: Cupón
+tariff: Tarifa
+amount: Importe
+percent: Porcentage
+absolute: Absoluto
+value: Valor
+active: Activo
+code: Codigo
+subject: Asunto
+    
+#mime types help
+image.formats: 'Formatos soportados: jpg jpeg png'
+video.formats: 'Formatos soportados: mp4 mov avi'
+audio.formats: 'Formatos soportados: mp4 audio mp3'
+
+wrong.type: Formato incorrecto
+
+#Menu Labels
+menu.exercise: Ejercicios
+menu.article: Articulo
+menu.articles: Articulos
+menu.podcast: Audio
+menu.podcasts: Audios
+menu.presentation: Presentación
+menu.presentations: Presentaciónes
+menu.video: Vídeo
+menu.videos: Vídeos
+menu.user: Usuario
+menu.users: Usuarios
+menu.userProfile: Perfil Usuario
+menu.usersProfiles: Perfiles Usuarios
+menu.tariff: Tarifa
+menu.tariffs: Tarifas
+menu.payment: Pago
+menu.payments: Pagos
+menu.statusPayment: Estado del Pago
+menu.statusPayments: Estados de los Pagos
+menu.coupon: Cupón
+menu.coupons: Cupones
+menu.suggestion: Sugerencias
+menu.category: Categoria
+menu.subcategory: SubCategoria
+
+
+# ROLES
+ROLE_USER: Usuario
+ROLE_SUPER_ADMIN: Super Administrador
+ROLE_ADMIN: Administrador
+ROLE_EMPLOYEE: Centro
+ROLE_WORKER: Trabajador
+
+
+daily: Diario
+weekly: Semanal
+biweekly: Quincenal
+monthly: Mensual
+yearly: Anual
+
+
+#payment status
+prepare: No confirmado
+reject: No confirmado
+confirm: Confirmado
+default: Confirmado
+complete: Completado
+

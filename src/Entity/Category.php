@@ -30,9 +30,27 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"category-write","category-read"})
+     * @Groups({"category-write","category-read","subcategory-read"})
      */
     private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"category-write","category-read"})
+     */
+    private $color;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"category-write","category-read"})
+     */
+    private $colorName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"category-write","category-read"})
+     */
+    private $iconName;
 
     public function __construct()
     {
@@ -83,6 +101,42 @@ class Category
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getColorName(): ?string
+    {
+        return $this->colorName;
+    }
+
+    public function setColorName(?string $colorName): self
+    {
+        $this->colorName = $colorName;
+
+        return $this;
+    }
+
+    public function getIconName(): ?string
+    {
+        return $this->iconName;
+    }
+
+    public function setIconName(?string $iconName): self
+    {
+        $this->iconName = $iconName;
 
         return $this;
     }
