@@ -178,9 +178,6 @@ class UserController extends Controller
             if (isset($params["timeBeforeNotif"])) {
                 $user->setTimeBeforeNotif(new DateTime($params["timeBeforeNotif"]));
             }
-            if (isset($params["hasGoogleActive"]) && $params["hasGoogleActive"] == FALSE) {
-                $user->setGoogleAccessToken(null);
-            }
             if (isset($params["idFavorite"])) {
                 $favorite = $this->getDoctrine()->getRepository(Center::class)->find($params["idFavorite"]);
                 if ($favorite != null) {
