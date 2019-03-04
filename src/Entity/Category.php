@@ -23,7 +23,7 @@ class Category
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Subcategory", mappedBy="category")
+     * @ORM\OneToMany(targetEntity="App\Entity\Subcategory", mappedBy="category", cascade={"remove","persist"})
      * @Groups({"category-read"})
      */
     private $subcategory;
@@ -55,6 +55,7 @@ class Category
     public function __construct()
     {
         $this->subcategory = new ArrayCollection();
+        $this->name=null;
     }
 
     public function getId(): ?int

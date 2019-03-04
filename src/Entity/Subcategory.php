@@ -21,7 +21,7 @@ class Subcategory
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="subcategory")
-     * @Groups({"subcategory-read","subcategory-write"})
+     * @Groups({"subcategory-read","subcategory-write","category-read"})
      */
     private $category;
 

@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\ADS;
+use App\Entity\Vehicle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method ADS|null find($id, $lockMode = null, $lockVersion = null)
- * @method ADS|null findOneBy(array $criteria, array $orderBy = null)
- * @method ADS[]    findAll()
- * @method ADS[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Vehicle|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Vehicle|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Vehicle[]    findAll()
+ * @method Vehicle[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ADSRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, ADS::class);
+        parent::__construct($registry, Vehicle::class);
     }
 
     // /**
-    //  * @return ADS[] Returns an array of ADS objects
+    //  * @return Vehicle[] Returns an array of Vehicle objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ADSRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ADS
+    public function findOneBySomeField($value): ?Vehicle
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')

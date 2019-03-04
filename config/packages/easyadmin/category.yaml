@@ -8,7 +8,7 @@ easy_admin:
                 fields:
                     - { property: 'id', label: 'id' }
                     - { property: 'name', label: 'name' }
-                    - { property: 'color', label: 'color' }
+                    - { property: 'color', label: 'color'}
                     - { property: 'colorName', label: 'colorName' }
                     - { property: 'iconName', label: 'iconName' }
 

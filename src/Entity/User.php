@@ -41,7 +41,7 @@ class User extends BaseUser
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ADS", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Vehicle", mappedBy="user")
      */
     private $ads;
 
@@ -81,7 +81,7 @@ class User extends BaseUser
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\ADS")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Vehicle")
      */
     private $favorites;
     public function __construct()
@@ -129,14 +129,14 @@ class User extends BaseUser
 
 
     /**
-     * @return Collection|ADS[]
+     * @return Collection|Vehicle[]
      */
     public function getAds(): Collection
     {
         return $this->ads;
     }
 
-    public function addAd(ADS $ad): self
+    public function addAd(Vehicle $ad): self
     {
         if (!$this->ads->contains($ad)) {
             $this->ads[] = $ad;
@@ -146,7 +146,7 @@ class User extends BaseUser
         return $this;
     }
 
-    public function removeAd(ADS $ad): self
+    public function removeAd(Vehicle $ad): self
     {
         if ($this->ads->contains($ad)) {
             $this->ads->removeElement($ad);
@@ -242,14 +242,14 @@ class User extends BaseUser
     }
 
     /**
-     * @return Collection|ADS[]
+     * @return Collection|Vehicle[]
      */
     public function getFavorites(): Collection
     {
         return $this->favorites;
     }
 
-    public function addFavorite(ADS $favorite): self
+    public function addFavorite(Vehicle $favorite): self
     {
         if (!$this->favorites->contains($favorite)) {
             $this->favorites[] = $favorite;
@@ -258,7 +258,7 @@ class User extends BaseUser
         return $this;
     }
 
-    public function removeFavorite(ADS $favorite): self
+    public function removeFavorite(Vehicle $favorite): self
     {
         if ($this->favorites->contains($favorite)) {
             $this->favorites->removeElement($favorite);

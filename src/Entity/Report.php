@@ -19,7 +19,7 @@ class Report
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ADS", inversedBy="report")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Vehicle", inversedBy="report")
      */
     private $aDS;
 
@@ -28,12 +28,12 @@ class Report
         return $this->id;
     }
 
-    public function getADS(): ?ADS
+    public function getADS(): ?Vehicle
     {
         return $this->aDS;
     }
 
-    public function setADS(?ADS $aDS): self
+    public function setADS(?Vehicle $aDS): self
     {
         $this->aDS = $aDS;
 

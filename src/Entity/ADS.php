@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
- * @ORM\Entity(repositoryClass="App\Repository\ADSRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\VehicleRepository")
  */
 class ADS
 {
@@ -72,7 +72,7 @@ class ADS
     private $lat;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\AdsImages", mappedBy="aDs")
+     * @ORM\OneToMany(targetEntity="App\Entity\VehicleImages", mappedBy="aDs")
      */
     private $adsimages;
 
@@ -242,14 +242,14 @@ class ADS
     }
 
     /**
-     * @return Collection|AdsImages[]
+     * @return Collection|VehicleImages[]
      */
     public function getAdsimages(): Collection
     {
         return $this->adsimages;
     }
 
-    public function addAdsimage(AdsImages $adsimage): self
+    public function addAdsimage(VehicleImages $adsimage): self
     {
         if (!$this->adsimages->contains($adsimage)) {
             $this->adsimages[] = $adsimage;
@@ -259,7 +259,7 @@ class ADS
         return $this;
     }
 
-    public function removeAdsimage(AdsImages $adsimage): self
+    public function removeAdsimage(VehicleImages $adsimage): self
     {
         if ($this->adsimages->contains($adsimage)) {
             $this->adsimages->removeElement($adsimage);

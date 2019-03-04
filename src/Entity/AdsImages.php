@@ -40,7 +40,7 @@ class AdsImages
     private $updatedAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ADS", inversedBy="adsimages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Vehicle", inversedBy="adsimages")
      */
     private $aDs;
 
@@ -77,12 +77,12 @@ class AdsImages
         return $this->imageFile;
     }
 
-    public function getADs(): ?ADS
+    public function getADs(): ?Vehicle
     {
         return $this->aDs;
     }
 
-    public function setADs(?ADS $aDs): self
+    public function setADs(?Vehicle $aDs): self
     {
         $this->aDs = $aDs;
 

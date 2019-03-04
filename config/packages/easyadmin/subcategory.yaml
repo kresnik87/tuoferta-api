@@ -3,22 +3,23 @@ easy_admin:
         Subcategory:
             class: App\Entity\Subcategory
             label: menu.subcategory
+            controller: App\Controller\Admin\Model\CategoryController
             show:
                 title: menu.subcategory
                 fields:
                     - { property: 'id', label: 'id' }
                     - { property: 'name', label: 'name' }
-                    - { property: 'category.name', label: 'category'}
+                    - { property: 'category', label: 'category'}
 
 
             edit:
                 title: menu.subcategory
                 fields:
                     - { property: 'name', label: 'name'}
-                    - { property: 'category.name', label: 'category'}
+                    - { property: 'category', label: 'category'}
 
             form:
                title: menu.subcategory
                fields:
                    - { property: 'name', label: 'name' }
-                   - { property: 'category.name', label: 'category',type: 'easyadmin_autocomplete', type_options: { class: 'App\Entity\Category' } }
+
